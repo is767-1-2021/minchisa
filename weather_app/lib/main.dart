@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
     );
 
     return MaterialApp(
-      title: 'Weather App',
+      title: 'Grace Weather App',
       debugShowCheckedModeBanner: false,
       theme: theme,
       home: PageContainer(settings: settings),
