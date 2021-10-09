@@ -43,7 +43,7 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
                 Text(
-                  'Feb 25, 2021',
+                  'Feb 25, 2022',
                   style: TextStyle(
                     color: Theme.of(context).accentColor,
                     fontSize: 12,
@@ -120,7 +120,7 @@ class _DashboardState extends State<Dashboard> {
                   padding: EdgeInsets.only(top: 30),
                 ),
                 Text(
-                  '6522',
+                  '6523',
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontSize: 80,
@@ -146,7 +146,7 @@ class _DashboardState extends State<Dashboard> {
                             ),
                           ),
                           Text(
-                            '9000 Steps'.toUpperCase(),
+                            '9999 Steps'.toUpperCase(),
                             style: TextStyle(
                               color: Colors.grey,
                             ),
