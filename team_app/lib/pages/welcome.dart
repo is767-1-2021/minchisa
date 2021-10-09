@@ -19,7 +19,7 @@ class _WelcomeState extends State<Welcome> {
             child: Column(
               children: <Widget>[
                 Image.asset(
-                  'assets/img/illustration.png',
+                  'assets/images/illustration.png',
                   width: 300,
                 ),
                 Padding(

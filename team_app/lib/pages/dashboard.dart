@@ -1,17 +1,59 @@
+import 'package:badges/badges.dart';
+import 'package:fitness_app/pages/components/stat_cardd.dart';
+import 'package:fitness_app/pages/components/summary.dart';
+import 'package:fitness_app/pages/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class Dashboard extends StatefulWidget {
+  const Dashboard({Key key}) : super(key: key);
+
   @override
   _DashboardState createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
+  String username = 'Mr.John';
+  int notifyCount = 23;
+  int workTime = 165;
+  double burnCal = 500;
+  int step = 5300;
+  Map<String, dynamic> stepsSet = {'start': 0, 'end': 6000};
+  List<Map<String, dynamic>> summary = [
+    {'titleName': 'distance', 'value': 8500, 'unit': 'm'},
+    {'titleName': 'calroies', 'value': 259, 'unit': 'cal'},
+    {'titleName': 'heart rate', 'value': 103, 'unit': 'bpm'},
+  ];
+  List<Map<String, dynamic>> stat = [
+    {
+      'titleName': 'Carbs',
+      'achieved': 200.0,
+      'total': 350.0,
+      'color': Colors.orange,
+      'image': 'assets/images/bolt.png'
+    },
+    {
+      'titleName': 'Protien',
+      'achieved': 350.0,
+      'total': 300.0,
+      'color': colorPrimary,
+      'image': 'assets/images/fish.png'
+    },
+    {
+      'titleName': 'Fats',
+      'achieved': 100.0,
+      'total': 200.0,
+      'color': Colors.green,
+      'image': 'assets/images/sausage.png'
+    },
+    // {'titleName': 'calroies', 'value': 259, 'unit': 'cal'},
+    // {'titleName': 'heart rate', 'value': 103, 'unit': 'bpm'},
+  ];
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         titleSpacing: 10,
@@ -22,11 +64,11 @@ class _DashboardState extends State<Dashboard> {
             Container(
               width: 40,
               height: 40,
-              margin: EdgeInsets.only(right: 10),
+              margin: const EdgeInsets.only(right: 10),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: Image.network(
-                  'https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1153&q=80',
+                  'https://i.pravatar.cc/100',
                 ),
               ),
             ),
@@ -35,119 +77,113 @@ class _DashboardState extends State<Dashboard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'Grace Minchisa',
-                  style: TextStyle(
-                    color: Theme.of(context).accentColor,
+                  username,
+                  style: const TextStyle(
+                    color: colorText,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  'Feb 25, 2022',
-                  style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontSize: 12,
-                  ),
-                ),
+                // Text(
+                //   'Feb 25, 2018',
+                //   style: TextStyle(
+                //     color: colorText,
+                //     fontSize: 12,
+                //   ),
+                // ),
               ],
             ),
           ],
         ),
         actions: <Widget>[
-          FlatButton(
-            onPressed: () {},
-            child: Stack(
-              overflow: Overflow.visible,
-              children: <Widget>[
-                Container(
-                  width: 50,
-                  child: Icon(
-                    Icons.notifications,
-                    color: Theme.of(context).accentColor,
-                    size: 35,
-                  ),
-                ),
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  width: 20,
-                  height: 20,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: Colors.red,
-                    ),
-                    width: 20,
-                    height: 20,
-                    child: Center(
-                      child: Text(
-                        '03',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 9,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+            child: Badge(
+                badgeContent: Text('$notifyCount'),
+                child: const Icon(
+                  Icons.notifications,
+                  color: colorText,
+                  size: 30,
+                )),
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(25, 30, 25, 25),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
+      body: GestureDetector(
+        onTapUp: (TapUpDetails tapDetail) {
+          if (tapDetail.globalPosition.dx > size.width / 2) {
+            // Tap Right
+            setState(() {
+              step++;
+            });
+          } else if (tapDetail.globalPosition.dx < size.width / 2) {
+            // Tap Left
+            setState(() {
+              step--;
+            });
+          }
+        },
+        onHorizontalDragEnd: (DragEndDetails details) {
+          if (details.primaryVelocity > 0) {
+            // User swiped Right
+            setState(() {
+              step++;
+            });
+          } else if (details.primaryVelocity < 0) {
+            // User swiped Left
+            setState(() {
+              step--;
+            });
+          }
+        },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
+              children: [
                 Container(
                   width: 70,
                   height: 70,
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     color: Theme.of(context).primaryColor.withAlpha(50),
                   ),
                   child: Image.asset(
-                    'assets/img/shoe.png',
+                    'assets/images/shoe.png',
                     width: 60,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 30),
+                SizedBox(
+                  height: size.height * 0.02,
                 ),
                 Text(
-                  '6523',
+                  '$step',
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontSize: 80,
-                    fontFamily: 'Bebas',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 15),
+                SizedBox(
+                  height: size.height * 0.02,
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
-                  width: MediaQuery.of(context).size.width,
+                  width: size.width * 0.7,
                   child: Column(
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            '0 Steps'.toUpperCase(),
-                            style: TextStyle(
+                            '${stepsSet['start']} Steps'.toUpperCase(),
+                            style: const TextStyle(
                               color: Colors.grey,
                             ),
                           ),
                           Text(
-                            '9999 Steps'.toUpperCase(),
-                            style: TextStyle(
+                            '${stepsSet['end']} Steps'.toUpperCase(),
+                            style: const TextStyle(
                               color: Colors.grey,
                             ),
                           ),
@@ -155,183 +191,87 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       LinearPercentIndicator(
                         lineHeight: 8.0,
-                        percent: 0.7,
+                        percent: step / stepsSet['end'],
                         linearStrokeCap: LinearStrokeCap.roundAll,
-                        backgroundColor:
-                            Theme.of(context).accentColor.withAlpha(30),
+                        backgroundColor: colorSwatch.withAlpha(30),
                         progressColor: Theme.of(context).primaryColor,
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 30),
-                      ),
-                      Text(
-                        'Steps Taken'.toUpperCase(),
-                        style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontFamily: 'Bebas',
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        'You walked 165 min today',
-                        style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontSize: 16,
-                        ),
-                      ),
                     ],
                   ),
                 ),
-                Divider(
-                  height: 25,
-                  color: Colors.grey[300],
+                SizedBox(
+                  height: size.height * 0.05,
                 ),
-                Container(
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        flex: 3,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'DISTANCE',
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: '8500',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Theme.of(context).accentColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: ' m',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              'CALORIES',
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: '259',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Theme.of(context).accentColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: ' cal',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: <Widget>[
-                            Text(
-                              'HEART RATE',
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: '102',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Theme.of(context).accentColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: ' bpm',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+                Text(
+                  'Steps Taken'.toUpperCase(),
+                  style: const TextStyle(
+                    color: colorText,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                Divider(
-                  height: 25,
-                  color: Colors.grey[300],
+                Text(
+                  'You walked $workTime min today',
+                  style: const TextStyle(
+                    color: colorText,
+                    fontSize: 16,
+                  ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
+                SizedBox(
+                  height: size.height * 0.05,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 3,
+                      child: Summary(
+                          titleName: '${summary[0]['titleName']}',
+                          value: summary[0]['value'],
+                          unit: '${summary[0]['unit']}'),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Summary(
+                          titleName: '${summary[1]['titleName']}',
+                          value: summary[1]['value'],
+                          unit: '${summary[1]['unit']}'),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Summary(
+                          titleName: '${summary[2]['titleName']}',
+                          value: summary[2]['value'],
+                          unit: '${summary[2]['unit']}'),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: size.height * 0.05,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(
+                    const Text(
                       'DIET PROGRESS',
                       style: TextStyle(
-                        color: Theme.of(context).accentColor,
+                        color: colorText,
                         fontSize: 24,
-                        fontFamily: 'Bebas',
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Row(
                       children: <Widget>[
                         Image.asset(
-                          'assets/img/down_orange.png',
+                          'assets/images/down_orange.png',
                           width: 20,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 15),
+                        SizedBox(
+                          height: size.height * 0.025,
                         ),
                         Text(
-                          '500 Calories',
-                          style: TextStyle(
+                          '$burnCal Calories',
+                          style: const TextStyle(
                             color: Colors.orange,
                             fontWeight: FontWeight.bold,
                           ),
@@ -341,135 +281,29 @@ class _DashboardState extends State<Dashboard> {
                   ],
                 ),
                 Container(
-                  height: 250,
-                  padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
-                  child: ListView(
-                    physics: ClampingScrollPhysics(),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      StatCard(
-                        title: 'Carbs',
-                        achieved: 200,
-                        total: 350,
-                        color: Colors.orange,
-                        image: Image.asset('assets/img/bolt.png', width: 20),
-                      ),
-                      StatCard(
-                        title: 'Protien',
-                        achieved: 350,
-                        total: 300,
-                        color: Theme.of(context).primaryColor,
-                        image: Image.asset('assets/img/fish.png', width: 20),
-                      ),
-                      StatCard(
-                        title: 'Fats',
-                        achieved: 100,
-                        total: 200,
-                        color: Colors.green,
-                        image: Image.asset('assets/img/sausage.png', width: 20),
-                      ),
-                    ],
-                  ),
-                ),
+                    height: 250,
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    child: ListView.builder(
+                        physics: const ClampingScrollPhysics(),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: stat.length,
+                        itemBuilder: (context, index) {
+                          return ShowStatCard(
+                            title: '${stat[index]['titleName']}',
+                            achieved: stat[index]['achieved'] as double,
+                            total: stat[index]['total'],
+                            color: stat[index]['color'],
+                            image: Image.asset(
+                              '${stat[index]['image']}',
+                              width: 20,
+                            ),
+                          );
+                        })),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class StatCard extends StatelessWidget {
-  final String title;
-  final double total;
-  final double achieved;
-  final Image image;
-  final Color color;
-
-  const StatCard({
-    Key key,
-    @required this.title,
-    @required this.total,
-    @required this.achieved,
-    @required this.image,
-    @required this.color,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 200,
-      margin: EdgeInsets.only(right: 10),
-      padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(
-          color: Colors.grey[200],
-          width: 1,
-        ),
-        borderRadius: BorderRadius.circular(5),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                title.toUpperCase(),
-                style: TextStyle(
-                  color: Theme.of(context).accentColor.withAlpha(100),
-                  fontSize: 14,
-                ),
-              ),
-              achieved < total
-                  ? Image.asset(
-                      'assets/img/down_orange.png',
-                      width: 20,
-                    )
-                  : Image.asset(
-                      'assets/img/up_red.png',
-                      width: 20,
-                    ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 25),
-          ),
-          CircularPercentIndicator(
-            radius: 80.0,
-            lineWidth: 8.0,
-            percent: achieved / (total < achieved ? achieved : total),
-            circularStrokeCap: CircularStrokeCap.round,
-            center: image,
-            progressColor: color,
-            backgroundColor: Theme.of(context).accentColor.withAlpha(30),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 25),
-          ),
-          RichText(
-            text: TextSpan(children: [
-              TextSpan(
-                text: achieved.toString(),
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Theme.of(context).accentColor,
-                ),
-              ),
-              TextSpan(
-                text: ' / $total',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                ),
-              ),
-            ]),
-          )
-        ],
       ),
     );
   }

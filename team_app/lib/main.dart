@@ -1,3 +1,4 @@
+import 'package:fitness_app/pages/constants.dart';
 import 'package:fitness_app/pages/welcome.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +11,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Fitness App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: Color(0XFF6D3FFF),
+        primarySwatch: colorSwatch,
+        primaryColor: colorPrimary,
         accentColor: Color(0XFF233C63),
         fontFamily: 'Poppins',
       ),
