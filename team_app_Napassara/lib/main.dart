@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: HomeScreen(),
-        initialRoute: '/twelve',
+        initialRoute: '/thirteen',
         routes: <String, WidgetBuilder>{
           '/one': (context) => Welcome(),
           '/two': (context) => BMICalculatorScreen(),
@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
           '/ten': (context) => result(),
           '/eleven': (context) => DrinkPage(),
           '/twelve': (context) => FoodPage(),
+          '/thirteen': (context) => Dashboard_all()
         });
   }
 }
