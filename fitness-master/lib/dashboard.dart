@@ -331,7 +331,7 @@ class _DashboardState extends State<Dashboard> {
                                           titleName: 'BMI',
                                           value: bmi.length == 0
                                               ? 0
-                                              : bmi[0]['bmi'],
+                                              : bmi[15]['bmi'],
                                           unit: 'double'),
                                     ),
                                     Expanded(
