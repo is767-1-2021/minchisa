@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'page/fifth_page.dart';
 import 'page/first_page.dart';
 import 'page/fourth_page.dart';
-import 'page/second_page.dart';
 import 'page/sixth_page.dart';
 import 'page/thrid_page.dart';
 
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
             bodyText2: TextStyle(color: Colors.orange[200]),
           ),
         ),
-        initialRoute: '/5',
+        initialRoute: '/5', 
         routes: <String, WidgetBuilder>{
           '/1': (context) => FirstPage(),
           '/2': (context) => SecondPage(),

@@ -17,7 +17,7 @@ class ThirdPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Break!!! Back at 11.00pm',
+              'Hi',
             ),
             Table(
               children: [
