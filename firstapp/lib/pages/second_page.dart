@@ -17,7 +17,7 @@ class SecondPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Break!!! Back at 11.00pm',
+              'Welcome',
             ),
             Table(
               children: [
