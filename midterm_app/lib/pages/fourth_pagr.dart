@@ -4,26 +4,26 @@ class FourthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> entries = <String>[
-      'A',
-      'B',
-      'C',
-      'D',
-      'E',
-      'F',
-      'G',
-      'H',
-      'I',
-      'J',
-      'K',
-      'L',
-      'M',
-      'N'
+      'Cupcakes on the Go',
+      'Pete s Pizza',
+      'Bacon Buggy',
+      'The Food Dude',
+      'Pasta Parade',
+      'Sir Burger',
+      'Taste of Thai',
+      'Dream Doughnuts',
+      'French Toast',
+      'Morning Burger',
+      'Salsa Shack',
+      'Grill Subs',
+      'Bread',
+      'Sandwich Mama'
     ];
-    final List<int> colorCodes = <int>[600, 500, 100];
+    final List<int> colorCodes = <int>[100, 50, 200];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Listview Example'),
+        title: Text('Menu'),
       ),
       body: ListView.separated(
         padding: EdgeInsets.all(8.0),
@@ -31,8 +31,8 @@ class FourthPage extends StatelessWidget {
         itemBuilder: (context, index) {
           return ProductTile(
             item: ProductItem(
-              name: 'Product ${entries[index]}',
-              price: '฿25',
+              name: ' ${entries[index]}',
+              price: '฿ 25',
               colorShade: colorCodes[index % 3],
             ),
           );
@@ -49,10 +49,8 @@ class ProductItem {
   final int colorShade;
 
   const ProductItem(
-      {Key? key,
-      required this.name,
-      required this.price,
-      required this.colorShade});
+    {Key? key, required this.name, 
+    required this.price, required this.colorShade});
 }
 
 class ProductTile extends StatelessWidget {
@@ -64,8 +62,7 @@ class ProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
+        Navigator.push(context, 
           MaterialPageRoute(
             builder: (context) => ProductDetail(item: item),
           ),
@@ -73,9 +70,9 @@ class ProductTile extends StatelessWidget {
       },
       child: Container(
         height: 100,
-        color: Colors.amber[item.colorShade],
+        color: Colors.pink[item.colorShade],
         child: Center(
-          child: Text('${item.name}'),
+          child: Text(' ${item.name}'),
         ),
       ),
     );
@@ -91,14 +88,14 @@ class ProductDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product Detail'),
+        title: Text('Price'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('Product Name: ${item.name}'),
-          Text('Price: ${item.price}'),
+          Text(':  ${item.name}'),
+          Text('Price: 10 ${item.price}'),
         ],
       ),
     );

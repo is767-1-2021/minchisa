@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_app/page/second_page.dart';
-import 'package:midterm_app/models/first_form_model.dart';
-import 'package:provider/provider.dart';
 
-import 'page/fifth_page.dart';
-import 'page/first_page.dart';
-import 'page/fourth_page.dart';
-import 'page/thrid_page.dart';
-import 'page/second_page.dart';
-import 'page/sixth_page.dart';
+import 'pages/fifth_page.dart';
+import 'pages/first_page.dart';
+import 'pages/fourth_pagr.dart';
+import 'pages/second_page.dart';
+import 'pages/sixth_page.dart';
+import 'pages/thrid_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,20 +17,20 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primaryColor: Colors.amber,
-          accentColor: Colors.yellow,
+          primaryColor: Colors.red,
+          accentColor: Colors.pink[200],
           textTheme: TextTheme(
-            bodyText2: TextStyle(color: Colors.purple),
+            bodyText2: TextStyle(color: Colors.brown.shade900),
           ),
         ),
         initialRoute: '/5',
         routes: <String, WidgetBuilder>{
-          '/1': (context) => FirstPage(),
           '/2': (context) => SecondPage(),
+          '/6': (context) => SixthPage(),
           '/3': (context) => ThirdPage(),
           '/4': (context) => FourthPage(),
           '/5': (context) => FifthPage(),
-          '/6': (context) => SixthPage(),
+          '/1': (context) => FirstPage(),
         });
   }
 }
@@ -89,17 +86,17 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              height: 200.0,
+              height: 500.0,
               margin: EdgeInsets.only(left: 100.0, right: 100.0, bottom: 20.0),
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(6.0),
               decoration: BoxDecoration(
-                color: Colors.amber.withOpacity(0.50),
+                color: Colors.deepOrange.withOpacity(0.50),
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: cat,
             ),
             Text(
-              'You have pushed the button this many times:',
+              'You Íhave pushed the button this many times:',
             ),
             Text(
               '$_counter',
@@ -110,14 +107,14 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
+                    primary: Colors.greenAccent,
                   ),
                   onPressed: _decreaseCounter,
                   child: Text('Decrease'),
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.red,
+                    primary: Colors.pink,
                   ),
                   onPressed: _incrementCounter,
                   child: Text('Increase'),

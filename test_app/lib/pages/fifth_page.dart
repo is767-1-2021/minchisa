@@ -1,18 +1,20 @@
+
+
 import 'package:flutter/material.dart';
 
-class FifthPage extends StatelessWidget {
+class FifthPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Grid View'),
       ),
       body: GridView.count(
         crossAxisCount: 2,
         children: List.generate(8, (index) {
           return InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/${index + 1}');
+            onTap: (){
+              Navigator.pushNamed(context, '/${index+1}');
               // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               //   content: Text('Tap at $index'),
               // ));
@@ -25,7 +27,7 @@ class FifthPage extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  'Page ${index + 1}',
+                  'Page ${index+1}',
                   style: Theme.of(context).textTheme.headline5,
                 ),
               ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_app/Models/first_form_model.dart';
+import 'package:midterm_app/models/first_form_model.dart';
 import 'package:provider/provider.dart';
 
-class SecondPage extends StatelessWidget {
+
+class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

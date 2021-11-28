@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ThirdPage extends StatelessWidget {
+class SixthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Thrid Page'),
+        title: Text('Sixth Page'),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
@@ -25,21 +25,21 @@ class ThirdPage extends StatelessWidget {
                   Container(
                     child: Center(child: Text('No')),
                     decoration: BoxDecoration(
-                      color: Colors.green,
+                      color: Colors.pink[50],
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
                   Container(
                     child: Center(child: Text('Name')),
                     decoration: BoxDecoration(
-                      color: Colors.green,
+                      color: Colors.pink[50],
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
                   Container(
                     child: Center(child: Text('Gender')),
                     decoration: BoxDecoration(
-                      color: Colors.green,
+                      color: Colors.pink[50],
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),

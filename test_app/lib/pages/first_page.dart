@@ -1,38 +1,42 @@
-import 'package:flutter/material.dart';
-import 'package:midterm_app/Models/first_form_model.dart';
-import 'package:midterm_app/page/thrid_page.dart';
-import 'package:provider/provider.dart';
 
-class FirstPage extends StatefulWidget {
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:test_app/models/first_form_model.dart';
+import 'package:test_app/pages/second_page.dart';
+
+
+class FirstPage extends StatefulWidget{
   @override
   _FirstPageState createState() => _FirstPageState();
 }
 
 class _FirstPageState extends State<FirstPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Page'),
+        title: Text('First Page First Page'),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.arrow_forward)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.agriculture)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.agriculture)),
           IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ThirdPage(),
-                  ),
-                );
-              },
-              icon: Icon(Icons.bus_alert)),
+            onPressed: (){
+              Navigator.push(context, 
+                MaterialPageRoute(
+                  builder: (context) => SecondPage(),
+                ),
+              );
+            }, 
+            icon: Icon(Icons.bus_alert)
+          ),
           IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/3');
-              },
-              icon: Icon(Icons.medication)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.food_bank)),
+            onPressed: (){
+              Navigator.pushNamed(context, '/3');
+            }, 
+            icon: Icon(Icons.medication)
+          ),
+          IconButton(onPressed: (){}, icon: Icon(Icons.food_bank)),
         ],
       ),
       body: Center(
@@ -48,7 +52,7 @@ class _FirstPageState extends State<FirstPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/2');
+                Navigator.pushNamed(context, '/6');
               },
               child: Text('Fill this form please'),
             ),

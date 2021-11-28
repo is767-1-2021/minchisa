@@ -18,6 +18,7 @@ class TransitionAppbar extends AnimatedWidget {
     final Animation<Color> animation = listenable;
     return AppBar(
       backgroundColor: animation.value,
+      // ignore: prefer_if_null_operators
       leading: leadingAction != null ? leadingAction : Container(),
       elevation: 0.0,
       bottomOpacity: 0.0,
@@ -26,3 +27,5 @@ class TransitionAppbar extends AnimatedWidget {
     );
   }
 }
+
+
