@@ -15,7 +15,7 @@ class _FirstPageState extends State<ExpenseHistory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('History'),
+        title: Text('Money Diary'),
       ),
       body: Center(
         child: Column(
@@ -31,7 +31,7 @@ class _FirstPageState extends State<ExpenseHistory> {
             ),
             ElevatedButton (
               onPressed: () {
-                Navigator.pushNamed(context, 'five/');
+                Navigator.pushNamed(context, 'money diary/');
               },
               child: Text('Fill this form please'),
                 style: TextButton.styleFrom(
